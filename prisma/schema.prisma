@@ -15,7 +15,10 @@ model User{
   id        Int        @id @default(autoincrement())
   email     String     @unique
   password  String
-  name      String     
+  name      String     @default("Administrador")
+  isAdmin   Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
   @@map("users")
 }
 

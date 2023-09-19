@@ -8,6 +8,10 @@ module.exports = {
 	plugins: [ "@typescript-eslint" ],
 	root: true,
 	rules: {
+		'indent': 'off',
+		"no-console": "off",
+		"react/no-unescaped-entities": "off",
+		"@next/next/no-page-custom-font": "off",
 		// Retornar siempre o no retornar nunca en una funcion
 		"consistent-return": "error",
 

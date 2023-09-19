@@ -4,18 +4,17 @@ import { prisma } from "utils/prisma"
 import { verify } from "argon2"
 import { NextAuthOptions } from "next-auth"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import CredentialsProvider from "next-auth/providers/credentials";
 
 export const nextAuthOptions: NextAuthOptions = {
 	// https://next-auth.js.org/configuration/providers
 	providers: [
-		CredentialsProvider({
-			name: "credentials",
+		Credentials({
+			name: "Credentials",
 			credentials: {
 				email: { label: "Username", type: "text" },
 				password: { label: "Password", type: "password" },
 			},
-            async authorize(credentials, req) {
+			authorize: async (credentials) => {
 				const creds = await loginSchema.parseAsync(credentials)
 				const user = await prisma.user.findFirst({
 					where: { email: creds.email },
@@ -27,7 +26,7 @@ export const nextAuthOptions: NextAuthOptions = {
 				if (!isValidPassword) {
 					return null
 				}
-				const isAdmin = "admin"
+				const isAdmin = user.isAdmin
 				return {
 					id: user.id,
 					name: user.name,
