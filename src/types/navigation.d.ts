@@ -7,5 +7,5 @@ export interface IRoute {
 	icon: ReactComponentElement | string;
 	secondary?: boolean;
 	path: string;
-	permissions: string[];
+	permissions: string;
 }

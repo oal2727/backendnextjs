@@ -23,15 +23,17 @@ const routes: IRoute[] = [
 		name: "Main Dashboard",
 		layout: "/admin",
 		path: "/default",
+		component:MainDashboard,
 		icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
-		permissions: [ "admin" ],
+		permissions: "admin",
 	},
 	{
 		name: "Data Tables",
 		layout: "/admin",
+		component:DataTables,
 		icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
 		path: "/data-tables",
-		permissions: [ "admin" ],
+		permissions: "admin",
 	},
 ]
 
