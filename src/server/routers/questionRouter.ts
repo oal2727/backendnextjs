@@ -12,17 +12,7 @@ const questionRouter = router({
 		return { message: "Welcome to Full-Stack tRPC CRUD App with Next.js" }
 	}),
 	get: publicProcedure.query(async ({ ctx }) => { // WORKING (X)
-		const data = ctx.prisma.post.findMany()
-		return data
-
-		// const list = await ctx.prisma.post.question.findMany()
-		// return list;
+		return []
 	}),
-	// create:publicProcedure.input(postSchema).mutation(async ({ input, ctx }) => { //
-	//     const post = await ctx.prisma.post.create({
-	//         title:input.title,
-	//         content:input.content
-	//     })
-	// })
 })
 export default questionRouter
