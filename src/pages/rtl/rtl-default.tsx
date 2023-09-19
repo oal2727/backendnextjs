@@ -1,10 +1,10 @@
 /*!
-  _   _  ___  ____  ___ ________  _   _   _   _ ___   
- | | | |/ _ \|  _ \|_ _|__  / _ \| \ | | | | | |_ _| 
- | |_| | | | | |_) || |  / / | | |  \| | | | | || | 
+  _   _  ___  ____  ___ ________  _   _   _   _ ___
+ | | | |/ _ \|  _ \|_ _|__  / _ \| \ | | | | | |_ _|
+ | |_| | | | | |_) || |  / / | | |  \| | | | | || |
  |  _  | |_| |  _ < | | / /| |_| | |\  | | |_| || |
  |_| |_|\___/|_| \_\___/____\___/|_| \_|  \___/|___|
-                                                                                                                                                                                                                                                                                                                                       
+
 =========================================================
 * Horizon UI - v1.1.0
 =========================================================
@@ -21,36 +21,35 @@
 */
 
 // Chakra imports
-import { Box, Flex, Icon, Select, FormLabel, SimpleGrid, useColorModeValue } from '@chakra-ui/react';
+import { Box, Flex, Icon, Select, FormLabel, SimpleGrid, useColorModeValue } from "@chakra-ui/react"
 // Custom components
-import MiniCalendar from 'components/calendar/MiniCalendar';
-import MiniStatistics from 'components/card/MiniStatistics';
-import IconBox from 'components/icons/IconBox';
-import RTLLayout from 'layouts/rtl';
-import React from 'react';
-import { MdAddTask, MdAttachMoney, MdBarChart, MdFileCopy } from 'react-icons/md';
-import CheckTable from 'views/admin/default/components/CheckTable';
-import ComplexTable from 'views/admin/default/components/ComplexTable';
-import DailyTraffic from 'views/admin/default/components/DailyTraffic';
-import PieCard from 'views/admin/default/components/PieCard';
-import Tasks from 'views/admin/default/components/Tasks';
-import TotalSpent from 'views/admin/default/components/TotalSpent';
-import WeeklyRevenue from 'views/admin/default/components/WeeklyRevenue';
-import { columnsDataCheck, columnsDataComplex, TableData } from 'views/admin/default/variables/columnsData';
-import tableDataCheck from 'views/admin/default/variables/tableDataCheck.json';
-import tableDataComplex from 'views/admin/default/variables/tableDataComplex.json';
+import MiniStatistics from "components/card/MiniStatistics"
+import IconBox from "components/icons/IconBox"
+import RTLLayout from "layouts/rtl"
+import React from "react"
+import { MdAddTask, MdAttachMoney, MdBarChart, MdFileCopy } from "react-icons/md"
+import CheckTable from "views/admin/default/components/CheckTable"
+import ComplexTable from "views/admin/default/components/ComplexTable"
+import DailyTraffic from "views/admin/default/components/DailyTraffic"
+import PieCard from "views/admin/default/components/PieCard"
+import Tasks from "views/admin/default/components/Tasks"
+import TotalSpent from "views/admin/default/components/TotalSpent"
+import WeeklyRevenue from "views/admin/default/components/WeeklyRevenue"
+import { columnsDataCheck, columnsDataComplex, TableData } from "views/admin/default/variables/columnsData"
+import tableDataCheck from "views/admin/default/variables/tableDataCheck.json"
+import tableDataComplex from "views/admin/default/variables/tableDataComplex.json"
 // Assets
-import { Image } from 'components/image/Image';
-import Usa from 'img/dashboards/usa.png';
+import { Image } from "components/image/Image"
+import Usa from "img/dashboards/usa.png"
 
 export default function RTLDashboard() {
 	// Chakra Color Mode
-	const brandColor = useColorModeValue('brand.500', 'white');
-	const boxBg = useColorModeValue('secondaryGray.300', 'whiteAlpha.100');
+	const brandColor = useColorModeValue("brand.500", "white")
+	const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100")
 	return (
 		<RTLLayout>
-			<Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
-				<SimpleGrid columns={{ base: 1, md: 2, lg: 3, '2xl': 6 }} gap='20px' mb='20px'>
+			<Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
+				<SimpleGrid columns={{ "base": 1, "md": 2, "lg": 3, "2xl": 6 }} gap='20px' mb='20px'>
 					<MiniStatistics
 						startContent={
 							<IconBox
@@ -80,8 +79,8 @@ export default function RTLDashboard() {
 						endContent={
 							<Flex mt='10px'>
 								<FormLabel htmlFor='balance'>
-									<Box boxSize={'12'}>
-										<Image src={Usa} alt='' w={'100%'} h={'100%'} />
+									<Box boxSize={"12"}>
+										<Image src={Usa} alt='' w={"100%"} h={"100%"} />
 									</Box>
 								</FormLabel>
 								<Select id='balance' variant='mini' mt='5px' me='0px' defaultValue='usd'>
@@ -138,10 +137,9 @@ export default function RTLDashboard() {
 					/>
 					<SimpleGrid columns={{ base: 1, md: 2, xl: 2 }} gap='20px'>
 						<Tasks />
-						<MiniCalendar h='100%' minW='100%' selectRange={false} />
 					</SimpleGrid>
 				</SimpleGrid>
 			</Box>
 		</RTLLayout>
-	);
+	)
 }

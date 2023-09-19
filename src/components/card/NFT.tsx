@@ -10,15 +10,15 @@ import {
 	Text,
 	useColorModeValue,
 	Spacer,
-	AspectRatio
-} from '@chakra-ui/react';
+	AspectRatio,
+} from "@chakra-ui/react"
 // Custom components
-import Card from 'components/card/Card';
-import { NextAvatar } from 'components/image/Avatar';
-import { Image } from 'components/image/Image';
+import Card from "components/card/Card"
+import { NextAvatar } from "components/image/Avatar"
+import { Image } from "components/image/Image"
 // Assets
-import { useState } from 'react';
-import { IoHeart, IoHeartOutline } from 'react-icons/io5';
+import { useState } from "react"
+import { IoHeart, IoHeartOutline } from "react-icons/io5"
 
 export default function NFT(props: {
 	image: string;
@@ -28,23 +28,23 @@ export default function NFT(props: {
 	download: string;
 	currentbid: string | number;
 }) {
-	const { image, name, author, bidders, download, currentbid } = props;
-	const [ like, setLike ] = useState(false);
-	const textColor = useColorModeValue('navy.700', 'white');
-	const textColorBid = useColorModeValue('brand.500', 'white');
+	const { image, name, author, bidders, download, currentbid } = props
+	const [ like, setLike ] = useState(false)
+	const textColor = useColorModeValue("navy.700", "white")
+	const textColorBid = useColorModeValue("brand.500", "white")
 	return (
 		<Card p='20px'>
-			<Flex direction={{ base: 'column' }} justify='center'>
-				<Box mb={{ base: '20px', '2xl': '20px' }} position='relative'>
+			<Flex direction={{ base: "column" }} justify='center'>
+				<Box mb={{ "base": "20px", "2xl": "20px" }} position='relative'>
 					<AspectRatio ratio={7 / 5}>
-						<Image src={image} w={'100%'} borderRadius='20px' alt='' />
+						<Image src={image} w={"100%"} borderRadius='20px' alt='' />
 					</AspectRatio>
 					<Button
 						position='absolute'
 						bg='white'
-						_hover={{ bg: 'whiteAlpha.900' }}
-						_active={{ bg: 'white' }}
-						_focus={{ bg: 'white' }}
+						_hover={{ bg: "whiteAlpha.900" }}
+						_active={{ bg: "white" }}
+						_focus={{ bg: "white" }}
 						p='0px !important'
 						top='14px'
 						right='14px'
@@ -52,7 +52,7 @@ export default function NFT(props: {
 						minW='36px'
 						h='36px'
 						onClick={() => {
-							setLike(!like);
+							setLike(!like)
 						}}>
 						<Icon
 							transition='0.2s linear'
@@ -67,23 +67,23 @@ export default function NFT(props: {
 					<Flex
 						justify='space-between'
 						direction={{
-							base: 'row',
-							md: 'column',
-							lg: 'row',
-							xl: 'column',
-							'2xl': 'row'
+							"base": "row",
+							"md": "column",
+							"lg": "row",
+							"xl": "column",
+							"2xl": "row",
 						}}
 						mb='auto'>
 						<Flex direction='column'>
 							<Text
 								color={textColor}
 								fontSize={{
-									base: 'xl',
-									md: 'lg',
-									lg: 'lg',
-									xl: 'lg',
-									'2xl': 'md',
-									'3xl': 'lg'
+									"base": "xl",
+									"md": "lg",
+									"lg": "lg",
+									"xl": "lg",
+									"2xl": "md",
+									"3xl": "lg",
 								}}
 								mb='5px'
 								fontWeight='bold'
@@ -93,7 +93,7 @@ export default function NFT(props: {
 							<Text
 								color='secondaryGray.600'
 								fontSize={{
-									base: 'sm'
+									base: "sm",
 								}}
 								fontWeight='400'
 								me='14px'>
@@ -105,31 +105,31 @@ export default function NFT(props: {
 							color={textColorBid}
 							size='sm'
 							mt={{
-								base: '0px',
-								md: '10px',
-								lg: '0px',
-								xl: '10px',
-								'2xl': '0px'
+								"base": "0px",
+								"md": "10px",
+								"lg": "0px",
+								"xl": "10px",
+								"2xl": "0px",
 							}}
 							fontSize='12px'>
-							{bidders.map((avt, key) => <NextAvatar key={key} h={'32px'} w={'32px'} src={avt} />)}
+							{bidders.map((avt, key) => <NextAvatar key={key} h={"32px"} w={"32px"} src={avt} />)}
 						</AvatarGroup>
 					</Flex>
 					<Flex
 						align={{
-							base: 'center',
-							md: 'start',
-							lg: 'center',
-							xl: 'start',
-							'2xl': 'center'
+							"base": "center",
+							"md": "start",
+							"lg": "center",
+							"xl": "start",
+							"2xl": "center",
 						}}
 						justify='space-between'
 						direction={{
-							base: 'row',
-							md: 'column',
-							lg: 'row',
-							xl: 'column',
-							'2xl': 'row'
+							"base": "row",
+							"md": "column",
+							"lg": "row",
+							"xl": "column",
+							"2xl": "row",
 						}}
 						mt='25px'>
 						<Text fontWeight='700' fontSize='sm' color={textColorBid}>
@@ -138,11 +138,11 @@ export default function NFT(props: {
 						<Link
 							href={download}
 							mt={{
-								base: '0px',
-								md: '10px',
-								lg: '0px',
-								xl: '10px',
-								'2xl': '0px'
+								"base": "0px",
+								"md": "10px",
+								"lg": "0px",
+								"xl": "10px",
+								"2xl": "0px",
 							}}>
 							<Button
 								variant='darkBrand'
@@ -159,5 +159,5 @@ export default function NFT(props: {
 				</Flex>
 			</Flex>
 		</Card>
-	);
+	)
 }

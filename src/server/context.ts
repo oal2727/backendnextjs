@@ -4,7 +4,6 @@ import * as trpcNext from "@trpc/server/adapters/next"
 import { prisma } from "../utils/prisma"
 // import { nextAuthOptions } from "common/auth"
 
-
 // create context based of incoming request
 // set as optional here so it can also be re-used for `getStaticProps()`
 export const createContext = async (

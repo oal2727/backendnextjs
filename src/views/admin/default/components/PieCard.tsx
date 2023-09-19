@@ -1,21 +1,21 @@
 // Chakra imports
-import { Box, Flex, Text, Select, useColorModeValue } from '@chakra-ui/react';
+import { Box, Flex, Text, Select, useColorModeValue } from "@chakra-ui/react"
 // Custom components
-import Card from 'components/card/Card';
-import PieChart from 'components/charts/PieChart';
-import { pieChartData, pieChartOptions } from 'variables/charts';
-import { VSeparator } from 'components/separator/Separator';
+import Card from "components/card/Card"
+import PieChart from "components/charts/PieChart"
+import { pieChartData, pieChartOptions } from "variables/charts"
+import { VSeparator } from "components/separator/Separator"
 export default function Conversion(props: { [x: string]: any }) {
-	const { ...rest } = props;
+	const { ...rest } = props
 
 	// Chakra Color Mode
-	const textColor = useColorModeValue('secondaryGray.900', 'white');
-	const cardColor = useColorModeValue('white', 'navy.700');
-	const cardShadow = useColorModeValue('0px 18px 40px rgba(112, 144, 176, 0.12)', 'unset');
+	const textColor = useColorModeValue("secondaryGray.900", "white")
+	const cardColor = useColorModeValue("white", "navy.700")
+	const cardShadow = useColorModeValue("0px 18px 40px rgba(112, 144, 176, 0.12)", "unset")
 	return (
 		<Card p='20px' alignItems='center' flexDirection='column' w='100%' {...rest}>
 			<Flex
-				px={{ base: '0px', '2xl': '10px' }}
+				px={{ "base": "0px", "2xl": "10px" }}
 				justifyContent='space-between'
 				alignItems='center'
 				w='100%'
@@ -51,7 +51,7 @@ export default function Conversion(props: { [x: string]: any }) {
 						63%
 					</Text>
 				</Flex>
-				<VSeparator mx={{ base: '60px', xl: '60px', '2xl': '60px' }} />
+				<VSeparator mx={{ "base": "60px", "xl": "60px", "2xl": "60px" }} />
 				<Flex direction='column' py='5px' me='10px'>
 					<Flex align='center'>
 						<Box h='8px' w='8px' bg='#6AD2FF' borderRadius='50%' me='4px' />
@@ -65,5 +65,5 @@ export default function Conversion(props: { [x: string]: any }) {
 				</Flex>
 			</Card>
 		</Card>
-	);
+	)
 }

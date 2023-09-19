@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react"
 
 // Chakra imports
 import {
@@ -10,25 +10,25 @@ import {
 	useColorModeValue,
 	Flex,
 	Icon,
-	Text
-} from '@chakra-ui/react';
+	Text,
+} from "@chakra-ui/react"
 // Assets
-import { MdOutlinePerson, MdOutlineCardTravel, MdOutlineLightbulb, MdOutlineSettings } from 'react-icons/md';
+import { MdOutlinePerson, MdOutlineCardTravel, MdOutlineLightbulb, MdOutlineSettings } from "react-icons/md"
 export default function Banner(props: { icon: JSX.Element | string; [x: string]: any }) {
-	const { icon, ...rest } = props;
+	const { icon, ...rest } = props
 
 	// Ellipsis modals
-	const { isOpen: isOpen1, onOpen: onOpen1, onClose: onClose1 } = useDisclosure();
+	const { isOpen: isOpen1, onOpen: onOpen1, onClose: onClose1 } = useDisclosure()
 
 	// Chakra color mode
 
-	const textColor = useColorModeValue('secondaryGray.500', 'white');
+	const textColor = useColorModeValue("secondaryGray.500", "white")
 	const textHover = useColorModeValue(
-		{ color: 'secondaryGray.900', bg: 'unset' },
-		{ color: 'secondaryGray.500', bg: 'unset' }
-	);
-	const bgList = useColorModeValue('white', 'whiteAlpha.100');
-	const bgShadow = useColorModeValue('14px 17px 40px 4px rgba(112, 144, 176, 0.08)', 'unset');
+		{ color: "secondaryGray.900", bg: "unset" },
+		{ color: "secondaryGray.500", bg: "unset" }
+	)
+	const bgList = useColorModeValue("white", "whiteAlpha.100")
+	const bgShadow = useColorModeValue("14px 17px 40px 4px rgba(112, 144, 176, 0.08)", "unset")
 
 	return (
 		<Menu isOpen={isOpen1} onClose={onClose1}>
@@ -52,10 +52,10 @@ export default function Banner(props: { icon: JSX.Element | string; [x: string]:
 					p='0px'
 					borderRadius='8px'
 					_active={{
-						bg: 'transparent'
+						bg: "transparent",
 					}}
 					_focus={{
-						bg: 'transparent'
+						bg: "transparent",
 					}}
 					mb='10px'>
 					<Flex align='center'>
@@ -72,10 +72,10 @@ export default function Banner(props: { icon: JSX.Element | string; [x: string]:
 					color={textColor}
 					_hover={textHover}
 					_active={{
-						bg: 'transparent'
+						bg: "transparent",
 					}}
 					_focus={{
-						bg: 'transparent'
+						bg: "transparent",
 					}}
 					mb='10px'>
 					<Flex align='center'>
@@ -92,10 +92,10 @@ export default function Banner(props: { icon: JSX.Element | string; [x: string]:
 					color={textColor}
 					_hover={textHover}
 					_active={{
-						bg: 'transparent'
+						bg: "transparent",
 					}}
 					_focus={{
-						bg: 'transparent'
+						bg: "transparent",
 					}}
 					mb='10px'>
 					<Flex align='center'>
@@ -112,10 +112,10 @@ export default function Banner(props: { icon: JSX.Element | string; [x: string]:
 					p='0px'
 					borderRadius='8px'
 					_active={{
-						bg: 'transparent'
+						bg: "transparent",
 					}}
 					_focus={{
-						bg: 'transparent'
+						bg: "transparent",
 					}}>
 					<Flex align='center'>
 						<Icon as={MdOutlineSettings} h='16px' w='16px' me='8px' />
@@ -126,5 +126,5 @@ export default function Banner(props: { icon: JSX.Element | string; [x: string]:
 				</MenuItem>
 			</MenuList>
 		</Menu>
-	);
+	)
 }

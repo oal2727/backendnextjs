@@ -4,5 +4,5 @@ import { createContext } from "../../../server/context"
 // export API handler
 export default trpcNext.createNextApiHandler({
 	router: appRouter,
-	createContext
+	createContext,
 })

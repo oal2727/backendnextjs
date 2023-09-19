@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { IRoute } from 'types/navigation'
 import { useSession } from 'next-auth/react'
+// import { User } from 'next-auth'
 
 interface SidebarLinksProps {
   routes: IRoute[]
@@ -33,8 +34,8 @@ export function SidebarLinks (props: SidebarLinksProps) {
     return router.pathname.includes(routeName)
   }
 
-  const checkRoutePermissions = (permissions: string[], user: User) => {
-    if (permissions.includes('admin') && user.isAdmin) {
+  const checkRoutePermissions = (permissions: string[], user: any) => {
+    7/* if (permissions.includes('admin') && user.isAdmin) {
       return true
     }
     if (permissions.includes('promoter-head') && user.isPromoterHead) {
@@ -44,11 +45,12 @@ export function SidebarLinks (props: SidebarLinksProps) {
       return true
     }
     return false
+  */
   }
   // this function creates the links from the secondary accordions (for example auth -> sign-in -> default)
   const createLinks = (routes: IRoute[]) => {
     return routes.map((route, index: number) => {
-      if (session && !checkRoutePermissions(route?.permissions, session.user)) {
+      if (session) {
         return null
       }
       if (
