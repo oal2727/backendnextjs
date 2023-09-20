@@ -8,12 +8,13 @@ import { NextFetchEvent, NextResponse } from "next/server"
 // eslint-disable-next-line consistent-return
 const middleware = async (req: NextRequestWithAuth) => {
 	// Si req.nextauth.token está definido, el usuario está autenticado
-	const loggedUser = req?.nextauth?.token?.user
 	const pathName = req.nextUrl.pathname
-	console.log("middleware")
+	const loggedUser = req?.nextauth?.token?.user
 	console.log(pathName)
+	if (loggedUser && pathName.includes("/admin")) {
+		const { isAdmin, isDoorControl, isPromoterHead } = loggedUser
+	}
 }
-
 export default withAuth(
 	middleware,
 	{

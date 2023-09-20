@@ -44,7 +44,6 @@ import {
 	MdFileCopy,
 } from "react-icons/md"
 import CheckTable from "views/admin/default/components/CheckTable"
-// import ComplexTable from "views/admin/default/components/ComplexTable"
 import DailyTraffic from "views/admin/default/components/DailyTraffic"
 import PieCard from "views/admin/default/components/PieCard"
 import Tasks from "views/admin/default/components/Tasks"
@@ -163,10 +162,6 @@ export default function UserReports () {
 				</SimpleGrid>
 			</SimpleGrid>
 			<SimpleGrid columns={{ base: 1, md: 1, xl: 2 }} gap='20px' mb='20px'>
-				{/* <ComplexTable
-					columnsData={columnsDataComplex}
-					tableData={(tableDataComplex as unknown) as TableData[]}
-				/>*/}
 				<SimpleGrid columns={{ base: 1, md: 2, xl: 2 }} gap='20px'>
 					<Tasks />
 				</SimpleGrid>

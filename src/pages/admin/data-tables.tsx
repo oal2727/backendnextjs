@@ -13,7 +13,6 @@ export default function DataTables () {
 					spacing={{ base: "20px", xl: "20px" }}
 				>
 					<p>hola</p>
-					
 				</SimpleGrid>
 			</Box>
 		</AdminLayout>

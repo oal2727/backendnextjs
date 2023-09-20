@@ -12,12 +12,7 @@ import "react-calendar/dist/Calendar.css"
 import Head from "next/head"
 import { SessionProvider } from "next-auth/react"
 
-function MyApp({
-	Component,
-	pageProps,
-}: AppProps<{
-	session: Session;
-}>) {
+function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<SessionProvider session={pageProps.session}>
 			<ChakraProvider theme={theme}>

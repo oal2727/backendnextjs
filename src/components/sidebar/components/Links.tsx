@@ -34,23 +34,17 @@ export function SidebarLinks (props: SidebarLinksProps) {
     return router.pathname.includes(routeName)
   }
 
-  const checkRoutePermissions = (permissions: string[], user: any) => {
-    7/* if (permissions.includes('admin') && user.isAdmin) {
-      return true
-    }
-    if (permissions.includes('promoter-head') && user.isPromoterHead) {
-      return true
-    }
-    if (permissions.includes('door-control') && user.isDoorControl) {
+  const checkRoutePermissions = (permissions: string, user: any) => {
+     if (permissions.includes('admin') && user.isAdmin) {
       return true
     }
     return false
-  */
+  
   }
   // this function creates the links from the secondary accordions (for example auth -> sign-in -> default)
   const createLinks = (routes: IRoute[]) => {
     return routes.map((route, index: number) => {
-      if (session) {
+      if (session && !checkRoutePermissions(route.permissions, session.user)) {
         return null
       }
       if (
