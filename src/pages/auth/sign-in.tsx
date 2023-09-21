@@ -67,34 +67,32 @@ export default function SignIn() {
 	}, [])
 
 	return (
-		<DefaultAuthLayout illustrationBackground={"/img/auth/auth.png"}>
+		<DefaultAuthLayout>
 			<Flex
 				maxW={{ base: "100%", md: "max-content" }}
-				w='100%'
+				w="100%"
 				mx={{ base: "auto", lg: "0px" }}
-				me='auto'
-				h='100%'
-				alignItems='start'
-				justifyContent='center'
+				me="auto"
+				h="100%"
+				alignItems="center"
+				justifyContent="center"
 				mb={{ base: "30px", md: "60px" }}
-				px={{ base: "25px", md: "0px" }}
 				mt={{ base: "40px", md: "14vh" }}
-				flexDirection='column'>
+				flexDirection="column">
 				<Box me='auto'>
-					<Heading color={textColor} fontSize='36px' mb='10px'>
-						Log In
+					<Heading color={textColor} fontSize='36px' mb='20px'>
+						Inicio de Sessión
 					</Heading>
 				</Box>
 				<Flex
-					zIndex='2'
-					direction='column'
+					zIndex="2"
+					direction="column"
 					w={{ base: "100%", md: "420px" }}
-					maxW='100%'
-					background='transparent'
-					borderRadius='15px'
+					maxW="100%"
+					background="transparent"
+					borderRadius="15px"
 					mx={{ base: "auto", lg: "unset" }}
-					me='auto'
-					mb={{ base: "20px", md: "auto" }}>
+					me="auto">
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<FormControl>
 							<FormLabel display='flex' ms='4px' fontSize='sm' fontWeight='500' color={textColor} mb='8px'>
@@ -109,7 +107,7 @@ export default function SignIn() {
 								ms={{ base: "0px", md: "0px" }}
 								type='email'
 								name="email"
-								placeholder='mail@simmmple.com'
+								placeholder='correo@mail'
 								mb='24px'
 								fontWeight='500'
 								size='lg'

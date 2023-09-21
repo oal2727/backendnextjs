@@ -99,6 +99,7 @@ export const nextAuthOptions: NextAuthOptions = {
 		// async signIn({ user, account, profile, email, credentials }) { return true },
 		// async redirect({ url, baseUrl }) { return baseUrl },
 		session: async ({ session, token }) => {
+			console.log("session")
 			if (token) {
 				session.id = token.id
 				session.user = token.user
@@ -106,6 +107,7 @@ export const nextAuthOptions: NextAuthOptions = {
 			return Promise.resolve(session)
 		},
 		jwt: async ({ token, user }) => {
+			console.log("user")
 			const isSignin = user ? true : false
 			if (isSignin) {
 				token.id = user!.id as number

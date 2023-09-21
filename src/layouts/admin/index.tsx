@@ -13,6 +13,8 @@ import {
 	getActiveRoute,
 	isWindowAvailable,
 } from "utils/navigation"
+import { useRouter } from "next/router"
+import { useSession } from "next-auth/react"
 
 interface DashboardLayoutProps extends PropsWithChildren {
 	[x: string]: any
@@ -22,15 +24,23 @@ interface DashboardLayoutProps extends PropsWithChildren {
 export default function AdminLayout (props: DashboardLayoutProps) {
 	const { children, ...rest } = props
 	// states and functions
+	const router = useRouter()
+
 	const [ fixed ] = useState(false)
 	const [ toggleSidebar, setToggleSidebar ] = useState(false)
 	// functions for changing the states from components
 	const { onOpen } = useDisclosure()
 
+	const { data: session, status } = useSession()
+
 	useEffect(() => {
+		if (status == "unauthenticated") {
+			router.push("/auth/sign-in")
+		}
 		window.document.documentElement.dir = "ltr"
 	})
 
+	console.log(status)
 	return (
 		<Box>
 			<SidebarContext.Provider

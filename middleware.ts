@@ -12,6 +12,7 @@ const middleware = async (req: NextRequestWithAuth) => {
 	const loggedUser = req?.nextauth?.token?.user
 	console.log(pathName)
 	if (loggedUser && pathName.includes("/admin")) {
+		console.log("well")
 		const { isAdmin, isDoorControl, isPromoterHead } = loggedUser
 	}
 }

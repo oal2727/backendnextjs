@@ -13,17 +13,17 @@ import { IRoute } from "types/navigation"
 
 const routes: IRoute[] = [
 	{
-		name: "Main Dashboard",
+		name: "Dashboard",
 		layout: "/admin",
 		path: "/default",
 		icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
 		permissions: "admin",
 	},
 	{
-		name: "Data Tables",
+		name: "Contactos",
 		layout: "/admin",
 		icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
-		path: "/data-tables",
+		path: "/contactos",
 		permissions: "admin",
 	},
 ]

@@ -36,8 +36,10 @@ export function SidebarLinks (props: SidebarLinksProps) {
 
   const checkRoutePermissions = (permissions: string, user: any) => {
      if (permissions.includes('admin') && user.isAdmin) {
+      console.log("check true")
       return true
     }
+    console.log("check false")
     return false
   
   }
@@ -45,6 +47,7 @@ export function SidebarLinks (props: SidebarLinksProps) {
   const createLinks = (routes: IRoute[]) => {
     return routes.map((route, index: number) => {
       if (session && !checkRoutePermissions(route.permissions, session.user)) {
+        console.log("here")
         return null
       }
       if (

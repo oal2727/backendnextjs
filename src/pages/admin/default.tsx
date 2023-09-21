@@ -1,29 +1,8 @@
-/*!
-  _   _  ___  ____  ___ ________  _   _   _   _ ___
- | | | |/ _ \|  _ \|_ _|__  / _ \| \ | | | | | |_ _|
- | |_| | | | | |_) || |  / / | | |  \| | | | | || |
- |  _  | |_| |  _ < | | / /| |_| | |\  | | |_| || |
- |_| |_|\___/|_| \_\___/____\___/|_| \_|  \___/|___|
-
-=========================================================
-* Horizon UI - v1.1.0
-=========================================================
-
-* Product Page: https://www.horizon-ui.com/
-* Copyright 2022 Horizon UI (https://www.horizon-ui.com/)
-
-* Designed and Coded by Simmmple
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
 import {
 	Avatar,
 	Box,
 	Flex,
+	Spinner,
 	FormLabel,
 	Icon,
 	Select,
@@ -40,23 +19,8 @@ import {
 	MdBarChart,
 	MdFileCopy,
 } from "react-icons/md"
-import CheckTable from "views/admin/default/components/CheckTable"
-import DailyTraffic from "views/admin/default/components/DailyTraffic"
-import PieCard from "views/admin/default/components/PieCard"
-import Tasks from "views/admin/default/components/Tasks"
-import TotalSpent from "views/admin/default/components/TotalSpent"
-import WeeklyRevenue from "views/admin/default/components/WeeklyRevenue"
-import {
-	columnsDataCheck,
-	columnsDataComplex,
-	TableData,
-} from "views/admin/default/variables/columnsData"
-import tableDataCheck from "views/admin/default/variables/tableDataCheck.json"
-import tableDataComplex from "views/admin/default/variables/tableDataComplex.json"
-import { isWindowAvailable } from "utils/navigation"
+
 import AdminLayout from "layouts/admin"
-import { Image } from "components/image/Image"
-import Usa from "img/dashboards/usa.png"
 import { trpc } from "utils/trpc" // paso 1 importar el trpc
 
 export default function UserReports () {
@@ -65,7 +29,7 @@ export default function UserReports () {
 	const brandColor = useColorModeValue("brand.500", "white")
 	const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100")
 
-	const { data: listPosts } = trpc.question.get.useQuery(undefined, {
+	const { data: contact, isLoading } = trpc.contact.count.useQuery(undefined, {
 		refetchOnWindowFocus: false,
 	})
 
@@ -78,25 +42,27 @@ export default function UserReports () {
 						gap='20px'
 						mb='20px'
 					>
-						<MiniStatistics
-							startContent={
-								<IconBox
-									w='56px'
-									h='56px'
-									bg={boxBg}
-									icon={
-										<Icon
-											w='32px'
-											h='32px'
-											as={MdBarChart}
-											color={brandColor}
-										/>
-									}
-								/>
-							}
-							name='Earnings'
-							value='$350.4'
-						/>
+						{(isLoading) ? <Spinner /> :
+							<MiniStatistics
+								startContent={
+									<IconBox
+										w='56px'
+										h='56px'
+										bg={boxBg}
+										icon={
+											<Icon
+												w='32px'
+												h='32px'
+												as={MdBarChart}
+												color={brandColor}
+											/>
+										}
+									/>
+								}
+								name='Total Contactos'
+								value={contact as number}
+							/>
+						}
 						<MiniStatistics
 							startContent={
 								<IconBox
@@ -114,35 +80,9 @@ export default function UserReports () {
 								/>
 							}
 							name='Spend this month'
-							value='$642.39'
-						/>
-						<MiniStatistics growth='+23%' name='Sales' value='$574.34' />
-						<MiniStatistics
-							endContent={
-								<Flex me='-16px' mt='10px'>
-									<FormLabel htmlFor='balance'>
-										<Box boxSize={"12"}>
-											<Image src={Usa} alt='' w={"100%"} h={"100%"} />
-										</Box>
-									</FormLabel>
-									<Select
-										id='balance'
-										variant='mini'
-										mt='5px'
-										me='0px'
-										defaultValue='usd'
-									>
-										<option value='usd'>USD</option>
-										<option value='eur'>EUR</option>
-										<option value='gba'>GBA</option>
-									</Select>
-								</Flex>
-							}
-							name='Your balance'
-							value='$1,000'
+							value='---'
 						/>
 					</SimpleGrid>
-					<p>{JSON.stringify(listPosts)}</p>
 				</>
 			</Box>
 		</AdminLayout>

@@ -5,25 +5,48 @@ interface IColumnHeader {
 
 type Columns = IColumnHeader[];
 
-export const columnsDataDevelopment: Columns = [
+export const columnContact: Columns = [
 	{
-		Header: "NAME",
-		accessor: "name",
+		Header: "id",
+		accessor: "id",
 	},
 	{
-		Header: "TECH",
-		accessor: "tech",
+		Header: "Nombre",
+		accessor: "fullName",
 	},
 	{
-		Header: "DATE",
-		accessor: "date",
+		Header: "Email",
+		accessor: "email",
 	},
 	{
-		Header: "PROGRESS",
-		accessor: "progress",
+		Header: "Asunto",
+		accessor: "theme",
+	},
+	{
+		Header: "subject",
+		accessor: "subject",
+	},
+	{
+		Header: "Entorno Trabajo",
+		accessor: "bussiness",
+	},
+	{
+		Header: "status",
+		accessor: "status",
+	},
+	{
+		Header: "Fecha Registro",
+		accessor: "createdAt",
+	},
+	{
+		Header: "Estado Servicio",
+		accessor: "stateService",
+	},
+	{
+		Header: "Acciones",
+		accessor: "actions",
 	},
 ]
-
 export const columnsDataCheck: Columns = [
 	{
 		Header: "NAME",
