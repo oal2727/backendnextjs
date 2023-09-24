@@ -4,9 +4,9 @@ export const serviceSchemaCreate = z.object({
 		invalid_type_error: "La fecha no es válida",
 		required_error: "Este campo es requerido",
 	}),
-	theme: z.string().optional(),
+	theme: z.string(),
 	contactId: z.number().optional(),
-	observation: z.string().optional(),
+	observation: z.string(),
 	timeHourEstimation: z.number().min(1, { message: "Este campo es requerido" }),
 	timeMinuteEstimation: z.number().min(1, { message: "Este campo es requerido" }),
 })
@@ -19,8 +19,8 @@ export const serviceSchemaUpdate = z.object({
 		required_error: "Este campo es requerido",
 	}),
 	observation: z.string().optional(),
-	timeHourToogle: z.number().optional(),
-	timeMinuteToogle: z.number().optional(),
+	timeHourToogle: z.number().min(0),
+	timeMinuteToogle: z.number().min(0),
 })
 
 export type IService = z.infer<typeof serviceSchemaCreate>;

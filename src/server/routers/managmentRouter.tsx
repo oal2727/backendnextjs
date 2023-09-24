@@ -34,7 +34,7 @@ const managmentRouter = router({
 			return {
 				...item,
 				timeEstimation: item.timeHourEstimation + " horas con " + item.timeMinuteEstimation + " minuto",
-				timeToogle: (item.hourToogle == null && item.timeMinuteToogle == null) ? "No asignado" :
+				timeToogle: (item.timeHourToogle == null && item.timeMinuteToogle == null) ? "No asignado" :
 					item.timeHourToogle + " horas con " + item.timeMinuteToogle + " minuto",
 				statePayment: item.paymentStatus ? "Cancelado" : "Pendiente",
 				paymentRequest: item.paymentRequest == null ? "No asignado" : item.paymentRequest,

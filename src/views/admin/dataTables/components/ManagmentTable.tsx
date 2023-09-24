@@ -44,7 +44,7 @@ type Managment = inferProcedureOutput<AppRouter["managment"]["get"]>;
 
 export type TableProps = {
 	columnsData: Column[];
-	tableData: Managment;
+	tableData: any;
 	reloadContact: any
 };
 
@@ -84,7 +84,7 @@ export default function ManagmentTable(props: TableProps) {
 		previousPage,
 	} = tableInstance
 
-	const [ selectedContactId, setSelectedContactId ] = useState(null)
+	const [ selectedContactId, setSelectedContactId ] = useState<any>(null)
 	useEffect(() => {
 		if (isMounted) return
 		setIsMounted(true)
@@ -104,7 +104,7 @@ export default function ManagmentTable(props: TableProps) {
 			overflowX={{ sm: "scroll", lg: "hidden" }}>
 			<Portal>
 				<ModalUpdateRequeriment isOpen={serviceModal} onClose={() => {
-					setSelectedContactId(undefined)
+					setSelectedContactId(null)
 					reloadContact()
 					closeServiceModal()
 				}}

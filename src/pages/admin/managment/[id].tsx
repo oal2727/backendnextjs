@@ -51,11 +51,13 @@ export default function Managment () {
 								}}
 								width={"200px"}>Agregar Servicio</Button>
 							{
-								<ManagmentTable
-									columnsData={developmentColumn}
-									tableData={managment?.managment as Managment}
-									reloadContact={reloadManagment}
-								/>
+								(managment?.managment?.length) && (
+									<ManagmentTable
+										columnsData={developmentColumn}
+										tableData={managment?.managment as any}
+										reloadContact={reloadManagment}
+									/>
+								)
 							}
 						</>
 					}

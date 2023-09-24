@@ -27,11 +27,13 @@ const ModalUpdateRequeriment = ({ ...props }: any) => {
 
 	useEffect(() => {
 		if (serviceData && contactId) {
+			const timeHourToogle = serviceData.timeHourToogle !== null ? serviceData.timeHourToogle : 0
+			const timeMinuteToogle = serviceData.timeMinuteToogle !== null ? serviceData.timeMinuteToogle : 0
 			setValue("id", serviceData.id)
 			setValue("contactId", contactId)
 			setValue("observation", serviceData.observation)
-			setValue("timeHourToogle",parseInt( serviceData.timeHourToogle))
-			setValue("timeMinuteToogle", parseInt(serviceData.timeMinuteToogle))
+			setValue("timeHourToogle", timeHourToogle)
+			setValue("timeMinuteToogle", timeMinuteToogle)
 		}
 		return () => {
 			reset()
