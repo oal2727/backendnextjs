@@ -39,6 +39,10 @@ export const columnContact: Columns = [
 		accessor: "createdAt",
 	},
 	{
+		Header: "Fecha Servicio",
+		accessor: "dateService",
+	},
+	{
 		Header: "Estado Servicio",
 		accessor: "stateService",
 	},
@@ -47,22 +51,42 @@ export const columnContact: Columns = [
 		accessor: "actions",
 	},
 ]
-export const columnsDataCheck: Columns = [
+export const developmentColumn: Columns = [
 	{
-		Header: "NAME",
-		accessor: "name",
+		Header: "Id",
+		accessor: "id",
 	},
 	{
-		Header: "PROGRESS",
-		accessor: "progress",
+		Header: "Tema",
+		accessor: "theme",
 	},
 	{
-		Header: "QUANTITY",
-		accessor: "quantity",
+		Header: "Tiempo estimado",
+		accessor: "timeEstimation",
 	},
 	{
-		Header: "DATE",
-		accessor: "date",
+		Header: "Tiempo Toogle",
+		accessor: "timeToogle",
+	},
+	{
+		Header: "Fecha solicitud",
+		accessor: "dateRequest",
+	},
+	{
+		Header: "Fecha Pago",
+		accessor: "paymentRequest",
+	},
+	{
+		Header: "paymentStatus",
+		accessor: "paymentStatus",
+	},
+	{
+		Header: "Estado de Pago",
+		accessor: "statePayment",
+	},
+	{
+		Header: "Acciones",
+		accessor: "actions",
 	},
 ]
 

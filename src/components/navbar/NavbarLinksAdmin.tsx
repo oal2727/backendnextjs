@@ -175,7 +175,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
 					<Avatar
 						_hover={{ cursor: "pointer" }}
 						color='white'
-						name='Adela Parkson'
+						name= {session?.user?.name}
 						bg='#11047A'
 						size='sm'
 						w='40px'
@@ -194,15 +194,12 @@ export default function HeaderLinks(props: { secondary: boolean }) {
 							fontSize='sm'
 							fontWeight='700'
 							color={textColor}>
-							👋&nbsp; Hey, Adela
+							👋&nbsp; { session?.user?.name}
 						</Text>
 					</Flex>
 					<Flex flexDirection='column' p='10px'>
 						<MenuItem _hover={{ bg: "none" }} _focus={{ bg: "none" }} borderRadius='8px' px='14px'>
-							<Text fontSize='sm'> { JSON.stringify(session) }</Text>
-						</MenuItem>
-						<MenuItem _hover={{ bg: "none" }} _focus={{ bg: "none" }} borderRadius='8px' px='14px'>
-							<Text fontSize='sm'>Newsletter Settings</Text>
+							<Text fontSize='sm'> { session?.user?.email}</Text>
 						</MenuItem>
 						<MenuItem
 							onClick={() => signOut()}

@@ -17,6 +17,7 @@ const eventRouter = router({
 				bussiness: true,
 				createdAt: true,
 				subject: true,
+				dateService: true,
 				serviceActive: true,
 			},
 		})
@@ -44,12 +45,17 @@ const eventRouter = router({
 			},
 		})
 
+		let dateService = null
+		if (!contactUnique?.serviceActive) {
+			dateService = new Date()
+		}
 		await ctx.prisma.contact.update({
 			where: {
 				id: contactId,
 			},
 			data: {
 				serviceActive: !contactUnique?.serviceActive,
+				dateService: dateService,
 			},
 		})
 		return true

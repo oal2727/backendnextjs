@@ -24,7 +24,7 @@ import {
 	Column,
 	useTable,
 } from "react-table"
-import { FaEye, FaCheckCircle, FaLaptopCode } from "react-icons/fa"
+import { FaEye, FaCheckCircle, FaLaptopCode, FaInfoCircle } from "react-icons/fa"
 import timezone from "dayjs/plugin/timezone"
 import utc from "dayjs/plugin/utc"
 // Custom components
@@ -35,19 +35,20 @@ import { AppRouter } from "server/routers/_app"
 import { trpc } from "utils/trpc"
 import ModalDetailContact from "components/modal/ModalDetailContact"
 import { useRouter } from "next/router"
+import ModalUpdateRequeriment from "components/modal/ModalUpdateRequeriment"
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
-  type Contact = inferProcedureOutput<AppRouter["contact"]["get"]>;
+type Managment = inferProcedureOutput<AppRouter["managment"]["get"]>;
 
 export type TableProps = {
 	columnsData: Column[];
-	tableData: Contact;
+	tableData: Managment;
 	reloadContact: any
 };
 
-export default function ContactTable(props: TableProps) {
+export default function ManagmentTable(props: TableProps) {
 	const { columnsData, tableData, reloadContact } = props
 	const router = useRouter()
 
@@ -58,7 +59,7 @@ export default function ContactTable(props: TableProps) {
 		{
 			columns,
 			data,
-			initialState: { pageSize: 10, hiddenColumns: [ "id", "status", "subject" ] },
+			initialState: { pageSize: 10, hiddenColumns: [ "id", "paymentStatus" ] },
 		},
 		useGlobalFilter,
 		useSortBy,
@@ -66,6 +67,7 @@ export default function ContactTable(props: TableProps) {
 	)
 
 	const [ isMounted, setIsMounted ] = useState(false)
+	const { mutateAsync: stateService, isLoading: activatinContact } = trpc.managment.updateState.useMutation()
 
 	const {
 		getTableProps,
@@ -82,7 +84,7 @@ export default function ContactTable(props: TableProps) {
 		previousPage,
 	} = tableInstance
 
-	const [ selectedItem, setSelectedItem ] = useState(null)
+	const [ selectedContactId, setSelectedContactId ] = useState(null)
 	useEffect(() => {
 		if (isMounted) return
 		setIsMounted(true)
@@ -90,8 +92,7 @@ export default function ContactTable(props: TableProps) {
 
 	const textColor = useColorModeValue("secondaryGray.900", "white")
 	const borderColor = useColorModeValue("gray.200", "whiteAlpha.100")
-	const { mutateAsync: activateContact, isLoading: activatinContact } = trpc.contact.updateState.useMutation()
-	const { isOpen: contactModal, onClose: closeContactModal, onOpen: openContact } = useDisclosure()
+	const { isOpen: serviceModal, onClose: closeServiceModal, onOpen: openModal } = useDisclosure()
 
 	if (!isMounted) return <></>
 
@@ -102,13 +103,14 @@ export default function ContactTable(props: TableProps) {
 			px='0px'
 			overflowX={{ sm: "scroll", lg: "hidden" }}>
 			<Portal>
-				<ModalDetailContact
-					isOpen={contactModal}
-					onClose={
-						() => closeContactModal()
-					}
-					item={selectedItem}
-				/>
+				<ModalUpdateRequeriment isOpen={serviceModal} onClose={() => {
+					setSelectedContactId(undefined)
+					reloadContact()
+					closeServiceModal()
+				}}
+				contactId={selectedContactId}
+				 />
+
 			</Portal>
 			<Flex px='25px' justify='space-between' mb='20px' align='center'>
 				<Text
@@ -116,7 +118,7 @@ export default function ContactTable(props: TableProps) {
 					fontSize='22px'
 					fontWeight='700'
 					lineHeight='100%'>
-           Registros de contactos
+           Registros de Servicios
 				</Text>
 			</Flex>
 			<Table {...getTableProps()} variant='simple' color='gray.500' mb='24px'>
@@ -150,58 +152,44 @@ export default function ContactTable(props: TableProps) {
 									let cellContent: JSX.Element
 									if (cell.column.id === "actions") {
 										cellContent = <>
+											{
+												!row.values.paymentStatus ?
+													<Button
+														onClick={() => {
+															stateService({
+																managmentId: row.values.id,
+															}).finally(() => {
+																reloadContact()
+															})
+														}}
+														variant='ghost'
+														colorScheme='blue'
+														size='sm'
+													>
+														<Icon as={FaCheckCircle} width='20px' height='20px' color='inherit' />
+													</Button>
+													: null
+											}
 											<Button
 												onClick={() => {
-													setSelectedItem(row.original as any)
-													openContact()
+													openModal()
+													setSelectedContactId(row.values.id)
 												}}
 												variant='ghost'
 												colorScheme='blue'
 												size='sm'
 											>
-												<Icon as={FaEye} width='20px' height='20px' color='inherit' />
-											</Button>
-											<Button
-												onClick={() => {
-													activateContact({
-														contactId: row.values.id,
-													}).finally(() => {
-														reloadContact()
-													})
-												}}
-												variant='ghost'
-												colorScheme='blue'
-												size='sm'
-											>
-												<Icon as={FaCheckCircle} width='20px' height='20px' color='inherit' />
-											</Button>
-											<Button
-												onClick={() => {
-													router.push(`managment/${row.values.id}`)
-												}}
-												variant='ghost'
-												colorScheme='blue'
-												size='sm'
-											>
-												<Icon as={FaLaptopCode} width='20px' height='20px' color='inherit' />
+												<Icon as={FaInfoCircle} width='20px' height='20px' color='inherit' />
 											</Button>
 										</>
 									}
-									else if (cell.column.Header == "Fecha Servicio") {
-										cellContent = <Text color={textColor} fontSize='sm' fontWeight='700'>
-											{
-												cell.value == null ? "No asignado" :
-													dayjs(cell.value).tz("America/Lima").format("DD/MM/YYYY")
-											}
-										</Text>
-									}
-									else if (cell.column.Header == "Fecha Registro") {
+									else if (cell.value instanceof Date) {
 										cellContent = <Text color={textColor} fontSize='sm' fontWeight='700'>
 											{dayjs(cell.value).tz("America/Lima").format("DD/MM/YYYY HH:mm")}
 										</Text>
 									}
-									else if (cell.column.Header == "Estado Servicio") {
-										cellContent = <Badge variant='solid' colorScheme={row.values.status ? "green" : "red"}>
+									else if (cell.column.Header == "Estado de Pago") {
+										cellContent = <Badge variant='solid' colorScheme={row.values.paymentStatus ? "green" : "red"}>
 											{cell.value}
 										</Badge>
 									}

@@ -39,8 +39,6 @@ export default function AdminLayout (props: DashboardLayoutProps) {
 		}
 		window.document.documentElement.dir = "ltr"
 	})
-
-	console.log(status)
 	return (
 		<Box>
 			<SidebarContext.Provider

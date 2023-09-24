@@ -36,10 +36,8 @@ export function SidebarLinks (props: SidebarLinksProps) {
 
   const checkRoutePermissions = (permissions: string, user: any) => {
      if (permissions.includes('admin') && user.isAdmin) {
-      console.log("check true")
       return true
     }
-    console.log("check false")
     return false
   
   }

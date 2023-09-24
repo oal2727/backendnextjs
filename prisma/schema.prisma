@@ -29,44 +29,31 @@ model Contact{
   theme              String
   bussiness          String?
   subject            String     
+  dateService        DateTime?  @db.Date
   createdAt          DateTime   @default(now())
   updatedAt          DateTime   @default(now()) @updatedAt
   serviceActive      Boolean    @default(false)
-  developmentRequest DevelopmentRequest[]
+  requeriment        Requeriment[]
 
   @@map("contact")
 }
 
 
-enum Status {
-  PROJECT
-  REQUERIMENT
-}
-
-
-model DevelopmentRequest{
-  id           Int        @id @default(autoincrement())
-  type         Status
-  contactId    Int
-  contact      Contact    @relation(fields: [contactId], references: [id])
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @default(now()) @updatedAt
-  requeriment  Requeriment[]
-  @@map("developmentRequest")
-
-}
 
 model Requeriment{
   id                    Int                   @id @default(autoincrement())
+  theme                 String
   dateRequest           DateTime   
-  dateInitialize        DateTime   
+  dateInitialize        DateTime?   
   paymentRequest        DateTime?   
   paymentStatus         Boolean               @default(false)
-  timeEstimation        String
-  timeToogle            String 
+  timeHourEstimation    Int
+  timeMinuteEstimation  Int
+  timeHourToogle        Int?
+  timeMinuteToogle      Int?
   observation           String                @db.Text
-  developmentRequestId  Int     
-  developmentRequest    DevelopmentRequest    @relation(fields: [developmentRequestId], references: [id])
+  contactId             Int?     
+  contact               Contact?              @relation(fields: [contactId], references: [id])
 
   @@map("requerimient")
 }
