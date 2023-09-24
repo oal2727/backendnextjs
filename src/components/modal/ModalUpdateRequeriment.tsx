@@ -28,11 +28,10 @@ const ModalUpdateRequeriment = ({ ...props }: any) => {
 	useEffect(() => {
 		if (serviceData && contactId) {
 			setValue("id", serviceData.id)
-			setValue("contactId", serviceData.contactId)
-			setValue("name", serviceData.name)
+			setValue("contactId", contactId)
 			setValue("observation", serviceData.observation)
-			setValue("timeHourToogle", serviceData.timeHourToogle)
-			setValue("timeMinuteToogle", serviceData.timeMinuteToogle)
+			setValue("timeHourToogle",parseInt( serviceData.timeHourToogle))
+			setValue("timeMinuteToogle", parseInt(serviceData.timeMinuteToogle))
 		}
 		return () => {
 			reset()
@@ -79,7 +78,6 @@ const ModalUpdateRequeriment = ({ ...props }: any) => {
 								type="datetime-local"
 								{...register("dateInitialize")}
 							/>
-							<InputRightAddon children='horas' />
 							<FormErrorMessage mt={1} mb={0}>{errors.dateInitialize?.message}</FormErrorMessage>
 						</FormControl>
 
@@ -91,7 +89,7 @@ const ModalUpdateRequeriment = ({ ...props }: any) => {
 									type="text"
 									{...register("timeHourToogle", { valueAsNumber: true })}
 								/>
-								<InputRightAddon children='horas' />
+								<InputRightAddon>horas</InputRightAddon>
 							</InputGroup>
 							<FormErrorMessage mt={1} mb={0}>{errors.timeHourToogle?.message}</FormErrorMessage>
 						</FormControl>
@@ -103,7 +101,7 @@ const ModalUpdateRequeriment = ({ ...props }: any) => {
 									type="text"
 									{...register("timeMinuteToogle", { valueAsNumber: true })}
 								/>
-								<InputRightAddon children='minutos' />
+								<InputRightAddon>minutos</InputRightAddon>
 							</InputGroup>
 							<FormErrorMessage mt={1} mb={0}>{errors.timeMinuteToogle?.message}</FormErrorMessage>
 						</FormControl>

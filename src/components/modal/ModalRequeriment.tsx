@@ -72,7 +72,7 @@ const ModalRequeriment = ({ ...props }: any) => {
 									type="text"
 									{...register("timeHourEstimation", { valueAsNumber: true })}
 								/>
-								<InputRightAddon children='horas' />
+								<InputRightAddon>horas</InputRightAddon>
 							</InputGroup>
 							<FormErrorMessage mt={1} mb={0}>{errors.timeHourEstimation?.message}</FormErrorMessage>
 						</FormControl>
@@ -84,7 +84,7 @@ const ModalRequeriment = ({ ...props }: any) => {
 									type="text"
 									{...register("timeMinuteEstimation", { valueAsNumber: true })}
 								/>
-								<InputRightAddon children='minutos' />
+								<InputRightAddon>minutos</InputRightAddon>
 							</InputGroup>
 							<FormErrorMessage mt={1} mb={0}>{errors.timeMinuteEstimation?.message}</FormErrorMessage>
 						</FormControl>
