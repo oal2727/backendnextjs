@@ -10,10 +10,10 @@ const middleware = async (req: NextRequestWithAuth) => {
 	// Si req.nextauth.token está definido, el usuario está autenticado
 	const pathName = req.nextUrl.pathname
 	const loggedUser = req?.nextauth?.token?.user
-	console.log(pathName)
-	if (loggedUser && pathName.includes("/admin")) {
+	if (loggedUser && pathName === "/admin") {
 		console.log("well")
-		const { isAdmin, isDoorControl, isPromoterHead } = loggedUser
+		// const { isAdmin, isDoorControl, isPromoterHead } = loggedUser
+		return NextResponse.redirect(new URL("/admin/default", req.url))
 	}
 }
 export default withAuth(

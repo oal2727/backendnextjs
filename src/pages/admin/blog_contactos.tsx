@@ -3,16 +3,17 @@ import React from "react"
 import AdminLayout from "layouts/admin"
 import ContactTable from "views/admin/dataTables/components/ContactTable"
 
-import { columnContact, columnsDataColumns } from "views/admin/dataTables/variables/columnsData"
+import { columnBlog, columnContact, columnsDataColumns } from "views/admin/dataTables/variables/columnsData"
 import { trpc } from "utils/trpc"
 import { inferProcedureOutput } from "@trpc/server"
 import { AppRouter } from "server/routers/_app"
+import BlogTable from "views/admin/dataTables/components/BlogTable"
 
-type ContactClog = inferProcedureOutput<AppRouter["contact"]["get"]>;
+type Contact = inferProcedureOutput<AppRouter["blog"]["get"]>;
 
-export default function Contactos () {
+export default function ContactosBlog () {
 
-	const { data: contacts, isLoading, refetch: reloadContacts } = trpc.contact.get.useQuery(undefined, {
+	const { data: contacts, isLoading, refetch: reloadContacts } = trpc.blog.get.useQuery(undefined, {
 		refetchOnWindowFocus: false,
 	})
 	return (
@@ -25,9 +26,9 @@ export default function Contactos () {
 				>
 					{(isLoading) ? <Spinner /> :
 						<>
-							<ContactTable
-								columnsData={columnContact}
-								tableData={contacts as ContactClog}
+							<BlogTable
+								columnsData={columnBlog}
+								tableData={contacts as Contact}
 								reloadContact={reloadContacts}
 							/>
 						</>

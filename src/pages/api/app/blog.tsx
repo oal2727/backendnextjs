@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import { prisma } from "utils/prisma"
-import { contactSchema } from "schemas/contactSchema"
+import { blogSchema } from "schemas/contactSchema"
 import cors from "../../../server/middlewares/cors"
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -8,18 +8,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	if (req.method !== "POST") {
 		return res.status(405).json({ message: "Método no permitido" })
 	}
-	const creds = await contactSchema.safeParseAsync(req.body)
+	const creds = await blogSchema.safeParseAsync(req.body)
 	if (!creds.success) {
 		return res.status(400).json({ message: "Error en los datos enviados" })
 	}
+
 	try {
-		await prisma.contact.create({
+		await prisma.blog.create({
 			data: {
-				fullName: req.body.fullName,
 				email: req.body.email,
-				subject: req.body.subject,
-				type: req.body.type,
-				theme: req.body.theme,
 			},
 		})
 		return res.status(200).json({ message: "registrado correctamente" })

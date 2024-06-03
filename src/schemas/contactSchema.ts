@@ -17,4 +17,11 @@ export const contactSchema = z.object({
 	  .max(255, { message: "El limite de caracteres es 255" }),
 })
 
+export const blogSchema = z.object({
+	email: z.string({
+		required_error: "Correo es requerido",
+	  }),
+})
+
 export type IContact = z.infer<typeof contactSchema>;
+export type IBlog = z.infer<typeof blogSchema>;

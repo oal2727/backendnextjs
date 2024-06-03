@@ -52,17 +52,20 @@ export default function SignIn() {
 		email: "",
 		password: "",
 	})
+	const [ showError, setShowError ] = useState(false)
 	const handleChange = (e: any) => {
 		setForm({ ...form, [e.target.name]: e.target.value })
 	}
 	const onSubmit = useCallback(async (data: ILogin) => {
 		const result = await signIn("credentials", { ...data, redirect: false })
 		if (result?.ok) {
-			console.log("well")
+			// console.log("well")
+			setShowError(false)
 			await router.push((router.query.callbackUrl as string) ?? "/admin")
 		}
 		else if (result?.error) {
-			console.log("error de session")
+			setShowError(true)
+			// console.log("error de session")
 		}
 	}, [])
 
@@ -137,6 +140,13 @@ export default function SignIn() {
 									/>
 								</InputRightElement>
 							</InputGroup>
+							{
+								showError && (
+									<Text fontSize='18px' my="2" color='tomato'>
+								Credenciales Invalidas
+									</Text>
+								)
+							}
 							<Button fontSize='sm' variant='brand'
 								type="submit"
 								fontWeight='500' w='100%' h='50' mb='24px'>

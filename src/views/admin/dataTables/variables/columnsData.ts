@@ -51,6 +51,20 @@ export const columnContact: Columns = [
 		accessor: "actions",
 	},
 ]
+export const columnBlog: Columns = [
+	{
+		Header: "id",
+		accessor: "id",
+	},
+	{
+		Header: "Email",
+		accessor: "email",
+	},
+	{
+		Header: "Fecha Registro",
+		accessor: "createdAt",
+	},
+]
 export const developmentColumn: Columns = [
 	{
 		Header: "Id",

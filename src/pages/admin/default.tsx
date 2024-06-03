@@ -43,27 +43,48 @@ export default function UserReports () {
 						mb='20px'
 					>
 						{(isLoading) ? <Spinner /> :
-							<MiniStatistics
-								startContent={
-									<IconBox
-										w='56px'
-										h='56px'
-										bg={boxBg}
-										icon={
-											<Icon
-												w='32px'
-												h='32px'
-												as={MdBarChart}
-												color={brandColor}
-											/>
-										}
-									/>
-								}
-								name='Total Contactos'
-								value={contact as number}
-							/>
+							<>
+								<MiniStatistics
+									startContent={
+										<IconBox
+											w='56px'
+											h='56px'
+											bg={boxBg}
+											icon={
+												<Icon
+													w='32px'
+													h='32px'
+													as={MdBarChart}
+													color={brandColor}
+												/>
+											}
+										/>
+									}
+									name='Total Contactos'
+									value={contact?.contact as number}
+								/>
+								<MiniStatistics
+									startContent={
+										<IconBox
+											w='56px'
+											h='56px'
+											bg={boxBg}
+											icon={
+												<Icon
+													w='32px'
+													h='32px'
+													as={MdBarChart}
+													color={brandColor}
+												/>
+											}
+										/>
+									}
+									name='Total Blog'
+									value={contact?.blog as number}
+								/>
+							</>
 						}
-						<MiniStatistics
+						{/* <MiniStatistics
 							startContent={
 								<IconBox
 									w='56px'
@@ -81,7 +102,7 @@ export default function UserReports () {
 							}
 							name='Spend this month'
 							value='---'
-						/>
+						/> */}
 					</SimpleGrid>
 				</>
 			</Box>

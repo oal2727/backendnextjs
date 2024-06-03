@@ -5,7 +5,11 @@ import { z } from "zod"
 const eventRouter = router({
 	count: publicProcedure.query(async ({ ctx }) => {
 		const contact = await ctx.prisma.contact.count()
-		return contact
+		const blog = await ctx.prisma.blog.count()
+		const data = {
+			contact, blog,
+		}
+		return data
 	}),
 	get: publicProcedure.query(async ({ ctx }) => {
 		const contacts = await ctx.prisma.contact.findMany({

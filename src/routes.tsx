@@ -26,6 +26,13 @@ const routes: IRoute[] = [
 		path: "/contactos",
 		permissions: "admin",
 	},
+	{
+		name: "Contactos de Blog",
+		layout: "/admin",
+		icon: <Icon as={MdBarChart} width='20px' height='20px' color='inherit' />,
+		path: "/blog_contactos",
+		permissions: "admin",
+	},
 ]
 
 export default routes

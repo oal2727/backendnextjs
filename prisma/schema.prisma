@@ -24,6 +24,7 @@ model User{
 
 model Contact{
   id                 Int        @id @default(autoincrement())
+  type               String?
   fullName           String     
   email              String
   theme              String
@@ -38,6 +39,14 @@ model Contact{
   @@map("contact")
 }
 
+model Blog{
+  id                 Int        @id @default(autoincrement())
+  email              String
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @default(now()) @updatedAt
+
+  @@map("blog")
+}
 
 
 model Requeriment{
